@@ -14,6 +14,8 @@
 
 	<form:form action="insertarCliente" modelAttribute="cliente"
 		method="POST">
+		<!-- Cuando queremos hacer una modificacion el capo id se llena pero no se muestra, solo lo hace para cumpliir con la instruccion sql UPDATE.... WHERE ID =X -->
+		<form:hidden path="id"/>
 
 		<label name="nombre"> Nombre: </label>
 		<form:input path="nombre" name="nombre" />
