@@ -1,10 +1,13 @@
 package com.juan.poa.aspectos;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import com.juan.poa.Cliente;
 
 @Aspect
 @Component
@@ -19,7 +22,20 @@ public void paraClientes() {}
 
 	// siempre que insertemos un cliente primero se van a realizar estas tareas:
 @Before("paraClientes()")	
-public void antesInsertarCliente () {
+public void antesInsertarCliente (JoinPoint miJoin) {
+	
+	/*rescatamos los argumentos de insertaCliente con el metodo getArgs() nos retorna un array de tipo Object
+	 * con todos los argumentos del metodo que se ejecutara a continuacion
+	 */
+
+	Object[] argumentos= miJoin.getArgs();
+	for (Object object : argumentos) {
+		if(object instanceof Cliente) {
+			Cliente elCliente = (Cliente) object;
+			System.out.printf("Nombre del cliente: %s %n", elCliente.getNombre());
+			System.out.printf("Tipo del cliente: %s %n", elCliente.getTipo());
+		}
+	}
 	System.out.println("El usuario esta logeado");
 	System.out.println("El perfil para insertar clientes es correcto");
 }

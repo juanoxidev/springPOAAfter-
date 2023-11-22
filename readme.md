@@ -107,3 +107,17 @@ Actuar en todos los metodos menos en los setters y los getters
 private void paraClientes() && !(paraGetters() || paraSetters()) {}
 private void paraPaqueteExceptoSettersyGetters() {}
 ```
+
+### Acceso a parámetros desde Aspecto con JoinPoint
+
+Un joinpoint es a un punto específico en la ejecución de un programa. Más precisamente, es un punto durante la ejecución de un programa donde se puede conectar un aspecto.
+
+Obtenemos los argumentos de insertaCliente con el metodo getArgs() que nos retorna un array del tipo Object  con todos los argumentos del metodo que se ejecutara a continuacion.
+
+Esto sirve por ejemplo para validar, ya que podemos tener la necesidad de validar algun metodo en el cual no queremos estar repitiendo codigo, hacemos un aspecto y luego tomamos los parametros con un JoinPoint para hacer las verificaciones en el aspecto. En caso de no cumplirse la validacion nunca se ejecuta el metodo principal que llamamos.
+
+
+
+
+
+
