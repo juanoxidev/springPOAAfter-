@@ -14,13 +14,17 @@ public class clasePrincipal {
 		
 		// obtener el bean del contenedor de Spring
 		ClienteDAO  elCliente = contexto.getBean("clienteDAO", ClienteDAO.class);
-		Cliente cl1 = new Cliente();
-		cl1.setNombre("Juan");
-		cl1.setTipo("Normal");
-		// llamar al metodo
-		elCliente.insertaCliente(cl1); // este es el nombre del metodo que debe coincidir con la anotacion @Before
 		
+		boolean miParam=false;
+		try {
+		// llamar al metodo
+		elCliente.obtenerClientes(miParam); // este es el nombre del metodo que debe coincidir con la anotacion @Before
+		}catch(Exception e){
+			System.out.println("Excepcion lanzada desde la clase principal");
+			System.out.println(e.getMessage());
+		}
 		//cerrar el contexto
+		System.out.println("Aqui continuaria la ejecucion del programa");
 		contexto.close();
 	}
 
